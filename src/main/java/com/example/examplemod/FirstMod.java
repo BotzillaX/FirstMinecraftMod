@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.example.FirstMod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.MapColor;         
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -30,42 +30,27 @@ import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(ExampleMod.MODID)
-public class ExampleMod
-{
-    // Define mod id in a common place for everything to reference
-    public static final String MODID = "examplemod";
-    // Directly reference a slf4j logger
+@Mod(FirstMod.MOD_ID)
+public class FirstMod {    
+    public static final String MOD_ID = "FirstMod";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public ExampleMod()
+    public FirstMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
-
-        modEventBus.addListener(this::addCreative);
-    }
-    private void commonSetup(final FMLCommonSetupEvent event) {
     }
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+    private void commonSetup(final FMLCommonSetupEvent event){
     }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-
-    }
-
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
+        public static void onClientSetup(FMLClientSetupEvent event){
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
