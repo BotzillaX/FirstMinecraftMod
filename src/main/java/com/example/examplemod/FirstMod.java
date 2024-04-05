@@ -29,7 +29,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(FirstMod.MOD_ID)
 public class FirstMod {    
     public static final String MOD_ID = "FirstMod";
@@ -52,7 +51,7 @@ public class FirstMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event){
             LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());//
         }
     }
 }
