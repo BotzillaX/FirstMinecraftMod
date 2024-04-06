@@ -1,8 +1,10 @@
 package net.ricedictator.firstmod;
 
+
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -16,26 +18,30 @@ import net.ricedictator.firstmod.newItem.newModItem;
 import org.slf4j.Logger;
 
 @Mod(FirstMod.MOD_ID)
-public class FirstMod {    
+public class FirstMod {
     public static final String MOD_ID = "firstmod";
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public FirstMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+
         newModItem.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+
+    private void commonSetup(final FMLCommonSetupEvent event){
+    }
     private void addCreative(BuildCreativeModeTabContentsEvent event){
-        if(event.getTabKey() == CreativeModeTab.INGREDIENTS){
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             event.accept(newModItem.SAPPHIRE);
         }
     }
-    private void commonSetup(final FMLCommonSetupEvent event){
-    }
+
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
