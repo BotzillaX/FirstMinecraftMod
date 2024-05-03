@@ -1,0 +1,6 @@
+{
+  "parents": "minecraft:block/cube_all",
+  "texture": {
+    "all" : "firstmod:block/sapphire_block"
+  }
+}
