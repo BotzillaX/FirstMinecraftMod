@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.ricedictator.firstmod.newBlock.newBlockSapphire;
+import net.ricedictator.firstmod.newItem.CreativeTabs;
 import net.ricedictator.firstmod.newItem.newModItem;
 import org.slf4j.Logger;
 
@@ -27,6 +29,8 @@ public class FirstMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
+        newBlockSapphire.register(modEventBus);
+        CreativeTabs.register(modEventBus);
         newModItem.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
@@ -39,6 +43,9 @@ public class FirstMod {
     private void addCreative(BuildCreativeModeTabContentsEvent event){
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             event.accept(newModItem.SAPPHIRE);
+        }
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+            event.accept(newModItem.RAW_SAPPHIRE);
         }
     }
 
